@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090909">
+  <title>SAVE INVESTMENT</title>
+  <style>
+    :root{--bg:#090909;--panel:#151515;--panel2:#1d1d1d;--gold:#d6ad48;--muted:#a8a8a8;--line:#303030;--white:#f6f4ee}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif}
+    header{padding:20px 5%;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+    .brand{font-weight:800;letter-spacing:1.5px;color:var(--gold);font-size:19px}.tag{font-size:12px;color:var(--muted)}
+    main{width:min(1100px,92%);margin:30px auto 60px}
+    .welcome{margin-bottom:24px}.welcome h1{font-size:clamp(25px,5vw,38px);margin:0 0 8px}.welcome p{color:var(--muted);margin:0}
+    .notice{background:#2a2110;border:1px solid #725b27;color:#f0d99b;padding:13px 15px;border-radius:12px;font-size:13px;line-height:1.5;margin:22px 0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px}
+    .label{font-size:12px;color:var(--muted);margin-bottom:12px}.amount{font-size:27px;font-weight:700}.gold{color:var(--gold)}
+    .layout{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;margin-top:18px}
+    h2{font-size:18px;margin:0 0 18px}.field{margin:14px 0}.field label{display:block;font-size:13px;color:var(--muted);margin-bottom:8px}
+    input,select{width:100%;background:#0d0d0d;border:1px solid #414141;border-radius:10px;color:var(--white);padding:13px;font-size:15px}
+    button{width:100%;border:0;border-radius:10px;padding:14px;background:var(--gold);color:#17120a;font-weight:800;font-size:15px;margin-top:8px;cursor:pointer}
+    button:disabled{opacity:.55;cursor:not-allowed}.small{font-size:12px;color:var(--muted);line-height:1.5}
+    .status{display:none;margin-top:14px;padding:12px;border-radius:10px;background:#252015;color:#f0d99b;font-size:13px;line-height:1.5}
+    .row{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:13px}.row:last-child{border:0}
+    footer{text-align:center;color:var(--muted);font-size:12px;padding:25px;border-top:1px solid var(--line)}
+    @media(max-width:760px){.grid{grid-template-columns:1fr}.layout{grid-template-columns:1fr}header{padding:17px 4%}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="brand">◆ SAVE INVESTMENT</div>
+  <div class="tag">MEMBER PORTAL · PREVIEW</div>
+</header>
+<main>
+  <section class="welcome">
+    <h1>Welcome to <span class="gold">SAVE INVESTMENT</span></h1>
+    <p>Your proposed digital investment member portal.</p>
+  </section>
+
+  <div class="notice">
+    <strong>Development preview:</strong> This page does not accept cryptocurrency, hold funds, execute investments or calculate returns. Real deposits must only be enabled after the appropriate Kenyan regulatory approvals, a suitable licensed provider, and secure server-side payment verification are in place.
+  </div>
+
+  <section class="grid">
+    <div class="card"><div class="label">Available balance</div><div class="amount">KSh 0.00</div></div>
+    <div class="card"><div class="label">Total invested</div><div class="amount">KSh 0.00</div></div>
+    <div class="card"><div class="label">Recorded returns</div><div class="amount gold">KSh 0.00</div></div>
+  </section>
+
+  <section class="layout">
+    <div class="card">
+      <h2>Crypto deposit request</h2>
+      <div class="field">
+        <label for="coin">Choose cryptocurrency</label>
+        <select id="coin">
+          <option value="BTC">Bitcoin (BTC)</option>
+          <option value="ETH">Ethereum (ETH)</option>
+          <option value="USDT-TRC20">Tether (USDT — TRC20)</option>
+          <option value="USDT-ERC20">Tether (USDT — ERC20)</option>
+          <option value="USDC">USD Coin (USDC)</option>
+          <option value="SOL">Solana (SOL)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="amount">Amount</label>
+        <input id="amount" type="number" min="0" step="any" placeholder="Enter amount">
+      </div>
+      <button id="depositBtn" type="button">Deposit integration not enabled</button>
+      <div class="status" id="status" role="status"></div>
+      <p class="small">Supported coins and networks will depend on the approved payment/custody provider. Never send funds to an address supplied by an unverified person.</p>
+    </div>
+
+    <div class="card">
+      <h2>Account activity</h2>
+      <div class="row"><span>Opening balance</span><strong>KSh 0.00</strong></div>
+      <div class="row"><span>Verified deposits</span><strong>KSh 0.00</strong></div>
+      <div class="row"><span>Withdrawals</span><strong>KSh 0.00</strong></div>
+      <div class="row"><span>Investment returns</span><strong>KSh 0.00</strong></div>
+      <p class="small">Activity will appear here only after it has been verified and recorded in the secure transaction ledger.</p>
+    </div>
+  </section>
+</main>
+<footer>© <span id="year"></span> SAVE INVESTMENT · All figures shown are illustrative preview values.</footer>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('depositBtn').addEventListener('click', function () {
+    const status = document.getElementById('status');
+    status.style.display = 'block';
+    status.textContent = 'Real deposits are not connected yet. No payment has been created and no funds should be sent. The next step is to establish the compliant payment and custody arrangement, then connect it through a secure backend.';
+  });
+</script>
+</body>
+</html>
